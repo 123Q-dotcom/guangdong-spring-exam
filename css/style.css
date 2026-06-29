@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    BRAND DESIGN SYSTEM — OKLCH Palette
    Mood: "midnight library — quiet focus, warm lamplight"
    Strategy: Committed — deep rose carries the brand
@@ -424,4 +424,196 @@ tr:hover td{background:var(--color-surface-hover)}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+}
+/* ============================================================
+   PREMIUM LAYER — Glass Depth & Visual Richness
+   ============================================================ */
+
+/* Animated gradient orb behind hero */
+.hero-orb {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px; height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    oklch(0.52 0.16 330 / 0.22),
+    oklch(0.68 0.16 82 / 0.08) 40%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  animation: orbFloat 8s ease-in-out infinite, orbPulse 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  33% { transform: translate(-48%, -52%) scale(1.08); }
+  66% { transform: translate(-52%, -49%) scale(0.94); }
+}
+@keyframes orbPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Parallax sections */
+.parallax-slow {
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+.parallax-fast {
+  transition: transform 0.05s linear;
+  will-change: transform;
+}
+
+/* Enhanced glass card */
+.glass-card {
+  background: oklch(0.14 0 0 / 0.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid oklch(1 0 0 / 0.08);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out);
+  box-shadow:
+    0 4px 24px rgb(0 0 0 / 0.3),
+    inset 0 1px 0 oklch(1 0 0 / 0.06);
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), oklch(0.52 0.16 330 / 0.08), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+  z-index: 0;
+}
+.glass-card:hover {
+  transform: translateY(-6px);
+  border-color: oklch(1 0 0 / 0.14);
+  box-shadow:
+    0 16px 48px rgb(0 0 0 / 0.5),
+    inset 0 1px 0 oklch(1 0 0 / 0.1);
+}
+.glass-card:hover::before { opacity: 1; }
+.glass-card > * { position: relative; z-index: 1; }
+
+/* Glass stat card */
+.glass-stat {
+  text-align: center;
+  padding: var(--space-10) var(--space-8);
+}
+.glass-stat .stat-number {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: var(--space-3);
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+/* Hero CTA row */
+.hero-actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--space-8);
+  animation: fadeInUp 0.6s 0.4s var(--ease-out) both;
+}
+
+/* Staggered card reveal */
+.card-stagger { opacity: 0; transform: translateY(30px); }
+.card-stagger.revealed { opacity: 1; transform: translateY(0); transition: all 0.6s var(--ease-out); }
+
+/* Glow border on hover for interactive cards */
+.glow-border {
+  position: relative;
+  isolation: isolate;
+}
+.glow-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+}
+.glow-border:hover::after { opacity: 0.5; }
+
+/* Light ray effect for hero */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, transparent, oklch(0.52 0.16 330 / 0.04), transparent 25%);
+  animation: lightRay 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes lightRay {
+  to { transform: rotate(360deg); }
+}
+
+/* Enhanced tag */
+.tag-glow {
+  background: oklch(0.52 0.16 330 / 0.12);
+  border: 1px solid oklch(0.52 0.16 330 / 0.25);
+  color: var(--brand-primary);
+}
+.tag-glow:hover {
+  background: oklch(0.52 0.16 330 / 0.2);
+  box-shadow: 0 0 20px var(--brand-primary-glow);
+}
+
+/* Counter highlight */
+.counter-glow {
+  animation: counterPulse 3s ease-in-out infinite;
+}
+@keyframes counterPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+
+/* Section accent line */
+.accent-line {
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
+  border-radius: 2px;
+  margin: var(--space-2) auto var(--space-6);
+}
+
+/* Mobile nav overlay enhancement */
+@media (max-width: 768px) {
+  .nav-links {
+    background: oklch(0.1 0 0 / 0.95);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+  }
+  .hero-orb { width: 400px; height: 400px; }
+}
+
+/* Reduced motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  .hero-orb, .hero::after, .counter-glow { animation: none; }
+  .parallax-slow, .parallax-fast { transition: none; }
 }
