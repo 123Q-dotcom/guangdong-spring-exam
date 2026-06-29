@@ -105,6 +105,7 @@ function initPageTransitions() {
   });
 }
 
+initParallax();initStaggerReveal();
 document.addEventListener("DOMContentLoaded", function() {
   renderNav(); renderFooter(); initNavScroll(); initScrollProgress(); initCardGlow();
   animateCounters(); initTimelineReveal(); initFAQ(); observeAnimate(); initBackToTop(); initPageTransitions();
