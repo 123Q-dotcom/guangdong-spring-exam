@@ -617,3 +617,139 @@ tr:hover td{background:var(--color-surface-hover)}
   .hero-orb, .hero::after, .counter-glow { animation: none; }
   .parallax-slow, .parallax-fast { transition: none; }
 }
+
+/* ============================================================
+   VISUAL FX — Glare, Sweep, Mirror, Tilt
+   ============================================================ */
+
+/* 3D Tilt card container */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.1s ease, box-shadow 0.3s ease;
+}
+.card-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Diagonal light sweep */
+.sweep-card {
+  position: relative;
+  overflow: hidden;
+}
+.sweep-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--sweep-x, -100%);
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent 0%, oklch(1 0 0 / 0.06) 45%, oklch(1 0 0 / 0.12) 50%, oklch(1 0 0 / 0.06) 55%, transparent 100%);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+/* Magnetic element */
+.magnetic {
+  transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+}
+
+/* Mirror reflection on hero text */
+.hero-mirror {
+  position: relative;
+  display: inline-block;
+}
+.hero-mirror::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 105%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, oklch(0.95 0 0 / 0.25), transparent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform: scaleY(-1);
+  filter: blur(1px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Floating badges */
+.float-tag {
+  animation: floatTag 3s ease-in-out infinite;
+}
+.float-tag:nth-child(2) { animation-delay: 0.5s; }
+.float-tag:nth-child(3) { animation-delay: 1s; }
+@keyframes floatTag {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Glowing card border on hover */
+.border-glow {
+  position: relative;
+}
+.border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent), var(--brand-primary));
+  background-size: 300% 300%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: borderShine 3s linear infinite;
+}
+.border-glow:hover::before { opacity: 1; }
+@keyframes borderShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Pulsing CTA dot */
+.cta-pulse {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--color-success);
+  border-radius: 50%;
+  margin-right: 6px;
+  animation: ctaPulse 1.5s ease-in-out infinite;
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.65 0.18 145 / 0.6); }
+  50% { box-shadow: 0 0 0 10px oklch(0.65 0.18 145 / 0); }
+}
+
+/* Perspective section */
+.perspective-section {
+  perspective: 1200px;
+}
+.perspective-card {
+  transition: transform 0.1s ease;
+}
+
+/* Iridescent shimmer */
+@keyframes iridescent {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.iridescent-text {
+  background: linear-gradient(270deg, var(--brand-primary), var(--brand-accent), oklch(0.62 0.18 280), var(--brand-primary));
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: iridescent 4s ease infinite;
+}
