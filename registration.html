@@ -9,13 +9,109 @@
 <body>
   <nav class="nav" id="nav"></nav>
   <main>
-    <div class="page-header">
+    <section class="hero">
       <h1>报名流程</h1>
       <p>从报名到录取，一站式了解依学考全流程</p>
-    </div>
+    </section>
+
+    <section class="section animate-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <h2>时间线</h2>
+        </div>
+        <div class="timeline" id="timelineContainer">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-alt animate-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <h2>详细步骤</h2>
+        </div>
+        <div class="card-grid" style="grid-template-columns:repeat(2,1fr);">
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:var(--spacing-sm);">📋</div>
+            <h3 class="card-title">1. 资格确认</h3>
+            <p class="card-text">确认本人具有广东省户籍，并已完成普通高中学业水平合格性考试报名，取得考生号。应届和往届高中毕业生均可参加。</p>
+          </div>
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:var(--spacing-sm);">💻</div>
+            <h3 class="card-title">2. 网上报名</h3>
+            <p class="card-text">登录广东省教育考试院官网，填写个人信息、选择报考科目，上传电子照片，缴纳报名费用。</p>
+          </div>
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:var(--spacing-sm);">🏢</div>
+            <h3 class="card-title">3. 现场确认</h3>
+            <p class="card-text">携带所需材料前往指定报名点进行现场确认、照片采集和信息核对签字。</p>
+          </div>
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:var(--spacing-sm);">✏️</div>
+            <h3 class="card-title">4. 参加考试</h3>
+            <p class="card-text">按准考证上的时间地点参加考试，遵守考场纪律，沉着应考。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section animate-on-scroll">
+      <div class="container">
+        <div class="section-header">
+          <h2>所需材料</h2>
+        </div>
+        <ul style="max-width:500px;margin:0 auto;list-style:none;">
+          <li style="display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-sm) 0;border-bottom:1px solid var(--color-border-light);">
+            <svg style="width:20px;height:20px;color:var(--color-success);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            身份证原件及复印件
+          </li>
+          <li style="display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-sm) 0;border-bottom:1px solid var(--color-border-light);">
+            <svg style="width:20px;height:20px;color:var(--color-success);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            户口本原件及复印件
+          </li>
+          <li style="display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-sm) 0;border-bottom:1px solid var(--color-border-light);">
+            <svg style="width:20px;height:20px;color:var(--color-success);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            学籍证明
+          </li>
+          <li style="display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-sm) 0;border-bottom:1px solid var(--color-border-light);">
+            <svg style="width:20px;height:20px;color:var(--color-success);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            近期免冠照片
+          </li>
+          <li style="display:flex;align-items:center;gap:var(--spacing-sm);padding:var(--spacing-sm) 0;">
+            <svg style="width:20px;height:20px;color:var(--color-success);flex-shrink:0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            报名信息确认表
+          </li>
+        </ul>
+      </div>
+    </section>
   </main>
   <footer class="footer" id="footer"></footer>
   <script src="js/search.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    (function() {
+      fetch("data/timeline.json")
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var container = document.getElementById("timelineContainer");
+          container.innerHTML = data.map(function(item) {
+            return '<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">' + item.date + '</div><h3 class="timeline-title">' + item.step + ". " + item.title + '</h3><p class="timeline-desc">' + item.description + "</p></div>";
+          }).join("");
+          // Number the dots
+          container.querySelectorAll(".timeline-dot").forEach(function(dot, i) {
+            dot.textContent = i + 1;
+            dot.style.display = "flex";
+            dot.style.alignItems = "center";
+            dot.style.justifyContent = "center";
+            dot.style.fontSize = "10px";
+            dot.style.fontWeight = "700";
+            dot.style.color = "#fff";
+          });
+        })
+        .catch(function() {
+          document.getElementById("timelineContainer").innerHTML = '<p class="text-center text-secondary">加载失败，请刷新重试</p>';
+        });
+    })();
+  </script>
 </body>
 </html>

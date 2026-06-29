@@ -9,13 +9,81 @@
 <body>
   <nav class="nav" id="nav"></nav>
   <main>
-    <div class="page-header">
+    <section class="hero">
       <h1>备考资料</h1>
       <p>精选学考备考资源，助你高效复习</p>
-    </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar" id="resourceFilter">
+          <span class="tag active" data-type="全部">全部</span>
+          <span class="tag" data-type="考试大纲">考试大纲</span>
+          <span class="tag" data-type="真题">真题</span>
+          <span class="tag" data-type="教材">教材</span>
+          <span class="tag" data-type="复习建议">复习建议</span>
+        </div>
+        <div class="card-grid" id="resourceCards" style="grid-template-columns:repeat(3,1fr);">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer" id="footer"></footer>
   <script src="js/search.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    (function() {
+      var allResources = [];
+      var currentType = "全部";
+
+      function getTypeTag(type) {
+        switch(type) {
+          case "考试大纲": return "tag-primary";
+          case "真题": return "tag-warning";
+          case "教材": return "tag-success";
+          case "复习建议": return "";
+          default: return "";
+        }
+      }
+
+      function renderCards(resources) {
+        var container = document.getElementById("resourceCards");
+        if (resources.length === 0) {
+          container.innerHTML = '<p class="text-center text-secondary">暂无相关资料</p>';
+          return;
+        }
+        container.innerHTML = resources.map(function(r) {
+          var typeClass = getTypeTag(r.type);
+          return '<div class="card"><div class="tag-group" style="margin-bottom:var(--spacing-sm);"><span class="tag ' + typeClass + '">' + r.type + '</span><span class="tag">' + r.subject + '</span></div><h3 class="card-title">' + r.title + '</h3><p class="card-text">' + r.description + '</p><a href="' + r.link + '" class="btn btn-outline btn-sm" style="margin-top:var(--spacing-md);">查看详情</a></div>';
+        }).join("");
+      }
+
+      function filterResources(type) {
+        currentType = type;
+        var filtered = type === "全部" ? allResources : allResources.filter(function(r) { return r.type === type; });
+        document.querySelectorAll("#resourceFilter .tag").forEach(function(t) {
+          t.classList.toggle("active", t.getAttribute("data-type") === type);
+        });
+        renderCards(filtered);
+      }
+
+      fetch("data/resources.json")
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          allResources = data;
+          renderCards(data);
+        })
+        .catch(function() {
+          document.getElementById("resourceCards").innerHTML = '<p class="text-center text-secondary">加载失败，请刷新重试</p>';
+        });
+
+      document.getElementById("resourceFilter").addEventListener("click", function(e) {
+        var tag = e.target.closest(".tag");
+        if (!tag) return;
+        filterResources(tag.getAttribute("data-type"));
+      });
+    })();
+  </script>
 </body>
 </html>

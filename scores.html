@@ -9,10 +9,44 @@
 <body>
   <nav class="nav" id="nav"></nav>
   <main>
-    <div class="page-header">
-      <h1>分数线</h1>
+    <section class="hero">
+      <h1>历年分数线</h1>
       <p>历年各院校依学考录取分数线汇总</p>
-    </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar" style="gap:var(--spacing-md);flex-wrap:wrap;">
+          <select id="scoreYear" style="padding:8px 16px;border-radius:var(--radius-full);border:1.5px solid var(--color-border);font-size:var(--font-size-sm);font-family:var(--font-system);outline:none;background:var(--color-bg);cursor:pointer;">
+            <option value="全部年份">全部年份</option>
+          </select>
+          <input type="text" id="scoreSchool" placeholder="搜索院校..." style="padding:8px 16px;border-radius:var(--radius-full);border:1.5px solid var(--color-border);font-size:var(--font-size-sm);font-family:var(--font-system);outline:none;max-width:220px;background:var(--color-bg);">
+          <div id="scoreCategoryTags" style="display:flex;gap:var(--spacing-sm);flex-wrap:wrap;">
+            <span class="tag active" data-category="全部">全部</span>
+            <span class="tag" data-category="普通类">普通类</span>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>年份</th>
+                <th>院校</th>
+                <th>类别</th>
+                <th>最低分</th>
+                <th>平均分</th>
+                <th>地区</th>
+              </tr>
+            </thead>
+            <tbody id="scoresTableBody">
+              <tr><td colspan="6" style="text-align:center;padding:var(--spacing-xl);"><div class="spinner"></div></td></tr>
+            </tbody>
+          </table>
+          <div class="table-cards" id="scoresMobile"></div>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer" id="footer"></footer>
   <script src="js/search.js"></script>

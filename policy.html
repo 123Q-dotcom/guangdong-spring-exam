@@ -9,13 +9,110 @@
 <body>
   <nav class="nav" id="nav"></nav>
   <main>
-    <div class="page-header">
+    <section class="hero">
       <h1>政策解读</h1>
       <p>了解依学考招生的最新政策和报考要求</p>
-    </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar" id="policyFilter">
+          <span class="tag active" data-category="全部">全部</span>
+          <span class="tag" data-category="基本政策">基本政策</span>
+          <span class="tag" data-category="报考条件">报考条件</span>
+          <span class="tag" data-category="加分政策">加分政策</span>
+          <span class="tag" data-category="录取规则">录取规则</span>
+          <span class="tag" data-category="常见问题">常见问题</span>
+        </div>
+        <div class="card-grid" id="policyCards" style="grid-template-columns:repeat(3,1fr);">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>常见问题</h2>
+        </div>
+        <div id="faqList"></div>
+      </div>
+    </section>
   </main>
   <footer class="footer" id="footer"></footer>
   <script src="js/search.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    (function() {
+      var allPolicies = [];
+      var currentCategory = "全部";
+
+      function renderCards(policies) {
+        var container = document.getElementById("policyCards");
+        if (policies.length === 0) {
+          container.innerHTML = '<p class="text-center text-secondary">暂无相关条目</p>';
+          return;
+        }
+        container.innerHTML = policies.map(function(p) {
+          var catTag = p.category === "常见问题" ? "tag-warning" : "tag-primary";
+          return '<div class="card"><span class="tag ' + catTag + '">' + p.category + '</span><h3 class="card-title" style="margin-top:var(--spacing-sm);">' + p.title + '</h3><p style="font-size:var(--font-size-xs);color:var(--color-text-secondary);">' + p.date + '</p><p class="card-text">' + p.summary + '</p></div>';
+        }).join("");
+      }
+
+      function renderFAQ(policies) {
+        var faqPolicies = policies.filter(function(p) { return p.category === "常见问题"; });
+        var container = document.getElementById("faqList");
+        if (faqPolicies.length === 0) {
+          container.innerHTML = "";
+          return;
+        }
+        container.innerHTML = faqPolicies.map(function(p) {
+          return '<div class="faq-item"><div class="faq-question" style="cursor:pointer;padding:var(--spacing-lg);background:var(--color-bg);border-radius:var(--radius-md);margin-bottom:var(--spacing-sm);font-weight:600;display:flex;justify-content:space-between;align-items:center;">' + p.title + '<svg style="width:16px;height:16px;transition:transform var(--transition-base);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div><div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height var(--transition-slow);padding:0 var(--spacing-lg);background:var(--color-bg);border-radius:0 0 var(--radius-md) var(--radius-md);margin-top:-4px;margin-bottom:var(--spacing-sm);">' + p.content + '</div></div>';
+        }).join("");
+
+        // FAQ toggle
+        container.querySelectorAll(".faq-question").forEach(function(q) {
+          q.addEventListener("click", function() {
+            var answer = this.nextElementSibling;
+            var icon = this.querySelector("svg");
+            var isOpen = answer.style.maxHeight !== "0px" && answer.style.maxHeight !== "";
+            answer.style.maxHeight = isOpen ? "0" : answer.scrollHeight + "px";
+            answer.style.paddingBottom = isOpen ? "0" : "var(--spacing-lg)";
+            icon.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
+          });
+        });
+      }
+
+      function filterByCategory(cat) {
+        currentCategory = cat;
+        var filtered = cat === "全部" ? allPolicies : allPolicies.filter(function(p) { return p.category === cat; });
+        // Update active tag
+        document.querySelectorAll("#policyFilter .tag").forEach(function(t) {
+          t.classList.toggle("active", t.getAttribute("data-category") === cat);
+        });
+        renderCards(filtered);
+        renderFAQ(allPolicies);
+      }
+
+      // Init
+      fetch("data/policies.json")
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          allPolicies = data;
+          renderCards(data);
+          renderFAQ(data);
+        })
+        .catch(function() {
+          document.getElementById("policyCards").innerHTML = '<p class="text-center text-secondary">加载失败，请刷新重试</p>';
+        });
+
+      // Filter click handlers
+      document.getElementById("policyFilter").addEventListener("click", function(e) {
+        var tag = e.target.closest(".tag");
+        if (!tag) return;
+        filterByCategory(tag.getAttribute("data-category"));
+      });
+    })();
+  </script>
 </body>
 </html>

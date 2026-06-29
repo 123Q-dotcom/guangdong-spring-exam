@@ -9,13 +9,72 @@
 <body>
   <nav class="nav" id="nav"></nav>
   <main>
-    <div class="page-header">
+    <section class="hero">
       <h1>考试科目</h1>
       <p>各科目考试大纲、分值与备考建议</p>
-    </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar" id="subjectFilter">
+          <span class="tag active" data-subject="全部">全部</span>
+          <span class="tag" data-subject="语文">语文</span>
+          <span class="tag" data-subject="数学">数学</span>
+          <span class="tag" data-subject="英语">英语</span>
+          <span class="tag" data-subject="物理">物理</span>
+          <span class="tag" data-subject="化学">化学</span>
+          <span class="tag" data-subject="生物">生物</span>
+        </div>
+        <div class="card-grid" id="subjectCards" style="grid-template-columns:repeat(3,1fr);">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer" id="footer"></footer>
   <script src="js/search.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    (function() {
+      var allSubjects = [];
+      var currentSubject = "全部";
+
+      function renderCards(subjects) {
+        var container = document.getElementById("subjectCards");
+        if (subjects.length === 0) {
+          container.innerHTML = '<p class="text-center text-secondary">暂无相关科目</p>';
+          return;
+        }
+        container.innerHTML = subjects.map(function(s) {
+          return '<div class="card"><h3 class="card-title">' + s.name + '</h3><span class="tag tag-primary">满分 ' + s.fullScore + ' 分</span><span class="tag" style="margin-left:var(--spacing-xs);">时长 ' + s.duration + '</span><p class="card-text" style="margin-top:var(--spacing-sm);"><strong>考试大纲：</strong>' + s.outline + '</p><p class="card-text"><strong>备考建议：</strong>' + s.tips + '</p></div>';
+        }).join("");
+      }
+
+      function filterSubjects(subj) {
+        currentSubject = subj;
+        var filtered = subj === "全部" ? allSubjects : allSubjects.filter(function(s) { return s.name === subj; });
+        document.querySelectorAll("#subjectFilter .tag").forEach(function(t) {
+          t.classList.toggle("active", t.getAttribute("data-subject") === subj);
+        });
+        renderCards(filtered);
+      }
+
+      fetch("data/subjects.json")
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          allSubjects = data;
+          renderCards(data);
+        })
+        .catch(function() {
+          document.getElementById("subjectCards").innerHTML = '<p class="text-center text-secondary">加载失败，请刷新重试</p>';
+        });
+
+      document.getElementById("subjectFilter").addEventListener("click", function(e) {
+        var tag = e.target.closest(".tag");
+        if (!tag) return;
+        filterSubjects(tag.getAttribute("data-subject"));
+      });
+    })();
+  </script>
 </body>
 </html>

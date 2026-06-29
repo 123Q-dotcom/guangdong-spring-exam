@@ -9,10 +9,35 @@
 <body>
   <nav class="nav" id="nav"></nav>
   <main>
-    <div class="page-header">
+    <section class="hero">
       <h1>院校招生</h1>
       <p>参与依学考招生的院校信息与专业介绍</p>
-    </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar" style="gap:var(--spacing-md);flex-wrap:wrap;">
+          <input type="text" id="schoolSearch" placeholder="搜索院校名称..." style="padding:8px 16px;border-radius:var(--radius-full);border:1.5px solid var(--color-border);font-size:var(--font-size-sm);font-family:var(--font-system);outline:none;min-width:220px;background:var(--color-bg);">
+          <div id="schoolRegionTags" style="display:flex;gap:var(--spacing-sm);flex-wrap:wrap;">
+            <span class="tag active" data-region="全部">全部</span>
+            <span class="tag" data-region="深圳">深圳</span>
+            <span class="tag" data-region="广州">广州</span>
+            <span class="tag" data-region="佛山">佛山</span>
+            <span class="tag" data-region="东莞">东莞</span>
+            <span class="tag" data-region="中山">中山</span>
+          </div>
+          <div id="schoolTypeTags" style="display:flex;gap:var(--spacing-sm);flex-wrap:wrap;">
+            <span class="tag active" data-type="全部">全部</span>
+            <span class="tag" data-type="职业本科">职业本科</span>
+            <span class="tag" data-type="高职(专科)">高职(专科)</span>
+          </div>
+        </div>
+
+        <div class="card-grid" id="schoolCards" style="grid-template-columns:repeat(2,1fr);">
+          <div class="spinner" style="grid-column:1/-1;"></div>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="footer" id="footer"></footer>
   <script src="js/search.js"></script>
