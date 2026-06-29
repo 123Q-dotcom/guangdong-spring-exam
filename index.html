@@ -6,43 +6,46 @@
   <title>广东省春季高考 · 依学考</title>
   <meta name="description" content="一站式了解广东省春季高考依学考政策、分数线、院校招生、备考资料">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
 </head>
 <body>
   <div class="dot-grid"></div>
   <nav class="nav" id="nav"></nav>
   <main>
     <section class="hero">
+      <div class="hero-orb"></div>
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
         2026 春季高考信息平台
       </div>
       <h1>广东省春季高考<br><span class="gradient-text">依学考</span></h1>
-      <p>一站式了解政策、分数线、院校招生与备考资料，让信息获取更简单</p>
+      <p>政策 · 分数线 · 院校 · 备考 — 一站掌握</p>
       <div class="hero-search">
         <input type="text" id="homeSearch" placeholder="搜索政策、院校、科目..." autocomplete="off">
+      </div>
+      <div class="hero-actions">
+        <a href="policy.html" class="btn btn-primary">了解政策</a>
+        <a href="scores.html" class="btn btn-ghost">查看分数线</a>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
         <div class="section-label">数据概览</div>
-        <div class="feature-grid">
-          <div class="card stat-card">
+        <div class="accent-line"></div>
+        <div class="feature-grid" id="statsRow">
+          <div class="glass-card glass-stat parallax-slow">
             <div class="stat-icon">🏫</div>
-            <div class="stat-number"><span class="counter" data-target="105">0</span>+</div>
+            <div class="stat-number counter-glow"><span class="counter" data-target="105">0</span>+</div>
             <div class="stat-label">参与院校</div>
           </div>
-          <div class="card stat-card">
+          <div class="glass-card glass-stat parallax-slow" style="transition-delay:0.1s">
             <div class="stat-icon">👥</div>
-            <div class="stat-number"><span class="counter" data-target="300000">0</span>+</div>
+            <div class="stat-number counter-glow"><span class="counter" data-target="300000">0</span>+</div>
             <div class="stat-label">年均考生</div>
           </div>
-          <div class="card stat-card">
+          <div class="glass-card glass-stat parallax-slow" style="transition-delay:0.2s">
             <div class="stat-icon">📅</div>
-            <div class="stat-number"><span class="counter" data-target="3">0</span> 年</div>
+            <div class="stat-number counter-glow"><span class="counter" data-target="3">0</span> 年</div>
             <div class="stat-label">成绩有效期</div>
           </div>
         </div>
@@ -54,35 +57,35 @@
         <div class="section-label">快速导航</div>
         <div class="section-header">
           <h2>全面了解春季高考</h2>
-          <p>六大板块覆盖从政策到备考的全部信息</p>
+          <p>六大板块，覆盖从政策到备考的全部信息</p>
         </div>
         <div class="card-grid grid-3">
-          <a href="policy.html" class="card nav-card">
+          <a href="policy.html" class="glass-card nav-card card-stagger glow-border" style="text-decoration:none;color:inherit;">
             <div class="nav-card-icon">📋</div>
             <h3>政策解读</h3>
             <p>依学考招生政策、报考条件、录取规则详解</p>
           </a>
-          <a href="registration.html" class="card nav-card">
+          <a href="registration.html" class="glass-card nav-card card-stagger glow-border" style="text-decoration:none;color:inherit;">
             <div class="nav-card-icon">📅</div>
             <h3>报名流程</h3>
             <p>从报名到录取，关键时间节点一目了然</p>
           </a>
-          <a href="subjects.html" class="card nav-card">
+          <a href="subjects.html" class="glass-card nav-card card-stagger glow-border" style="text-decoration:none;color:inherit;">
             <div class="nav-card-icon">📝</div>
             <h3>考试科目</h3>
             <p>各科大纲、分值与备考策略全面梳理</p>
           </a>
-          <a href="scores.html" class="card nav-card">
+          <a href="scores.html" class="glass-card nav-card card-stagger glow-border" style="text-decoration:none;color:inherit;">
             <div class="nav-card-icon">📊</div>
             <h3>分数线</h3>
             <p>历年各院校录取分数线实时查询</p>
           </a>
-          <a href="schools.html" class="card nav-card">
+          <a href="schools.html" class="glass-card nav-card card-stagger glow-border" style="text-decoration:none;color:inherit;">
             <div class="nav-card-icon">🏫</div>
             <h3>院校招生</h3>
             <p>参与招生院校详情与专业介绍</p>
           </a>
-          <a href="resources.html" class="card nav-card">
+          <a href="resources.html" class="glass-card nav-card card-stagger glow-border" style="text-decoration:none;color:inherit;">
             <div class="nav-card-icon">📚</div>
             <h3>备考资料</h3>
             <p>精选学考资源，高效备考无忧</p>
@@ -90,6 +93,8 @@
         </div>
       </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <section class="section">
       <div class="container">
@@ -105,27 +110,34 @@
     </section>
   </main>
   <footer class="footer" id="footer"></footer>
+  <script src="js/particles.js"></script>
   <script src="js/search.js"></script>
   <script src="js/main.js"></script>
   <script>
+    // Load latest policies
     (async function() {
       try {
         var res = await fetch("data/policies.json");
         var data = await res.json();
-        var latest = data.slice(0, 3);
-        var container = document.getElementById("latestPolicies");
-        container.innerHTML = latest.map(function(p) {
-          return '<a href="policy.html?id=' + p.id + '" class="card nav-card"><span class="tag tag-primary" style="margin-bottom:var(--space-2);display:inline-block;">' + p.category + '</span><h3 style="font-size:var(--text-base);margin-bottom:var(--space-2);">' + p.title + '</h3><p style="font-size:var(--text-sm);color:var(--text-tertiary);margin:0;">' + p.date + '</p><p style="font-size:var(--text-sm);color:var(--text-secondary);margin:0;margin-top:var(--space-2);">' + p.summary + '</p></a>';
+        var c = document.getElementById("latestPolicies");
+        c.innerHTML = data.slice(0,3).map(function(p) {
+          return '<a href="policy.html?id='+p.id+'" class="glass-card nav-card card-stagger" style="text-decoration:none;color:inherit;"><span class="tag tag-glow" style="margin-bottom:var(--space-2);display:inline-block;">'+p.category+'</span><h3 style="font-size:var(--text-base);margin-bottom:var(--space-2);">'+p.title+'</h3><p style="font-size:var(--text-sm);color:var(--color-ink-tertiary);margin:0;">'+p.date+'</p><p style="font-size:var(--text-sm);color:var(--color-ink-secondary);margin:0;margin-top:var(--space-2);">'+p.summary+'</p></a>';
         }).join("");
+        // Trigger stagger reveal
+        setTimeout(function() {
+          document.querySelectorAll(".card-stagger").forEach(function(el,i) {
+            setTimeout(function() { el.classList.add("revealed"); }, i * 100);
+          });
+        }, 200);
       } catch(e) {
-        document.getElementById("latestPolicies").innerHTML = '<p class="text-center text-secondary">加载失败，请刷新重试</p>';
+        document.getElementById("latestPolicies").innerHTML = '<p class="text-center text-secondary">加载失败，请刷新</p>';
       }
     })();
+    // Search
     var hs = document.getElementById("homeSearch");
     hs.addEventListener("keydown", function(e) {
       if (e.key === "Enter") {
-        var btn = document.getElementById("navSearchBtn");
-        if (btn) btn.click();
+        var b = document.getElementById("navSearchBtn"); if (b) b.click();
         setTimeout(function() {
           var si = document.getElementById("searchInput");
           if (si) { si.value = hs.value; si.dispatchEvent(new Event("input")); }
