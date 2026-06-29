@@ -1,0 +1,17 @@
+﻿[
+  {"id":1,"name":"深圳职业技术大学","type":"职业本科","region":"深圳","website":"https://www.szpu.edu.cn","description":"首批国家示范性高等职业院校，2023年升格为职业本科院校，办学实力位居全国前列。","majors":["电子信息工程技术","计算机应用技术","电子商务","现代物流管理"],"feature":"国家示范性高职院校"},
+  {"id":2,"name":"广东轻工职业技术大学","type":"职业本科","region":"广州","website":"https://www.gdip.edu.cn","description":"国家示范性高等职业院校，轻工特色鲜明，2023年升格为职业本科院校。","majors":["食品智能加工技术","化妆品技术","数字媒体技术","环境艺术设计"],"feature":"国家示范性高职院校"},
+  {"id":3,"name":"广州番禺职业技术学院","type":"高职(专科)","region":"广州","website":"https://www.gzpyp.edu.cn","description":"国家示范性高等职业院校，珠宝首饰和艺术设计类专业特色鲜明。","majors":["珠宝首饰技术与管理","艺术设计","大数据与会计","旅游管理"],"feature":"国家示范性高职院校"},
+  {"id":4,"name":"顺德职业技术学院","type":"高职(专科)","region":"佛山","website":"https://www.sdpt.edu.cn","description":"国家骨干高职院校，家具设计与制造、制冷与空调技术等专业全国领先。","majors":["家具设计与制造","制冷与空调技术","烹饪工艺与营养","智能制造装备技术"],"feature":"国家骨干高职院校"},
+  {"id":5,"name":"深圳信息职业技术学院","type":"高职(专科)","region":"深圳","website":"https://www.sziit.edu.cn","description":"国家示范性软件职业技术学院，信息技术类专业实力突出。","majors":["软件技术","人工智能技术应用","大数据技术","信息安全技术应用"],"feature":"国家示范性软件学院"},
+  {"id":6,"name":"广东科学技术职业学院","type":"高职(专科)","region":"广州","website":"https://www.gdit.edu.cn","description":"广东省属重点高职院校，工科和经管类专业协调发展。","majors":["建筑工程技术","新能源汽车技术","电子商务","商务英语"],"feature":"省属重点高职院校"},
+  {"id":7,"name":"广东交通职业技术学院","type":"高职(专科)","region":"广州","website":"https://www.gdcp.edu.cn","description":"交通运输部与广东省共建院校，交通类专业历史悠久。","majors":["道路与桥梁工程技术","城市轨道交通运营管理","汽车检测与维修技术","现代物流管理"],"feature":"交通运输部共建院校"},
+  {"id":8,"name":"广东水利电力职业技术学院","type":"高职(专科)","region":"广州","website":"https://www.gdsdxy.edu.cn","description":"水利电力行业特色院校，水利水电建筑工程等专业优势明显。","majors":["水利水电建筑工程","供用电技术","工程造价","水环境智能监测与治理"],"feature":"水利电力行业特色院校"},
+  {"id":9,"name":"广东食品药品职业学院","type":"高职(专科)","region":"广州","website":"https://www.gdspc.edu.cn","description":"食品药品类专业齐全，中药学、药品生产技术等专业特色突出。","majors":["中药学","药品生产技术","食品质量与安全","化妆品技术"],"feature":"食品药品行业特色院校"},
+  {"id":10,"name":"广东机电职业技术学院","type":"高职(专科)","region":"广州","website":"https://www.gdmec.edu.cn","description":"机电类特色院校，数控技术、工业机器人技术等专业实力雄厚。","majors":["数控技术","工业机器人技术","电气自动化技术","新能源汽车技术"],"feature":"机电行业特色院校"},
+  {"id":11,"name":"广东工贸职业技术学院","type":"高职(专科)","region":"广州","website":"https://www.gdgm.edu.cn","description":"工贸结合特色院校，测绘地理信息技术等专业全国知名。","majors":["测绘地理信息技术","国际经济与贸易","电子商务","市场营销"],"feature":"测绘地理信息特色院校"},
+  {"id":12,"name":"广州民航职业技术学院","type":"高职(专科)","region":"广州","website":"https://www.gcac.edu.cn","description":"民航局直属院校，飞机机电设备维修等航空类专业全国顶尖。","majors":["飞机机电设备维修","民航运输服务","空中乘务","机场运行服务与管理"],"feature":"民航局直属院校"},
+  {"id":13,"name":"广东农工商职业技术学院","type":"高职(专科)","region":"广州","website":"https://www.gdaib.edu.cn","description":"农工商综合发展的省属高职院校，热带农业类专业有独特优势。","majors":["作物生产与经营管理","市场营销","大数据与会计","酒店管理与数字化运营"],"feature":"农工商综合特色院校"},
+  {"id":14,"name":"东莞职业技术学院","type":"高职(专科)","region":"东莞","website":"https://www.dgpt.edu.cn","description":"东莞市属高职院校，对接东莞智能制造产业，工科专业实力强劲。","majors":["机械制造及自动化","电子信息工程技术","计算机应用技术","现代物流管理"],"feature":"东莞市属重点院校"},
+  {"id":15,"name":"中山职业技术学院","type":"高职(专科)","region":"中山","website":"https://www.zspt.edu.cn","description":"中山市属高职院校，灯饰设计、服装设计专业特色鲜明。","majors":["灯具设计与工艺","服装与服饰设计","电子商务","大数据技术"],"feature":"中山市属特色院校"}
+]

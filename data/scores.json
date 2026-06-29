@@ -1,0 +1,22 @@
+﻿[
+  {"year":2025,"school":"深圳职业技术大学","category":"普通类","minScore":405,"avgScore":420,"region":"深圳"},
+  {"year":2025,"school":"广东轻工职业技术大学","category":"普通类","minScore":390,"avgScore":408,"region":"广州"},
+  {"year":2025,"school":"广州番禺职业技术学院","category":"普通类","minScore":378,"avgScore":395,"region":"广州"},
+  {"year":2025,"school":"顺德职业技术学院","category":"普通类","minScore":365,"avgScore":382,"region":"佛山"},
+  {"year":2025,"school":"深圳信息职业技术学院","category":"普通类","minScore":395,"avgScore":412,"region":"深圳"},
+  {"year":2025,"school":"广东科学技术职业学院","category":"普通类","minScore":360,"avgScore":378,"region":"广州"},
+  {"year":2025,"school":"广东交通职业技术学院","category":"普通类","minScore":350,"avgScore":368,"region":"广州"},
+  {"year":2025,"school":"广东水利电力职业技术学院","category":"普通类","minScore":340,"avgScore":358,"region":"广州"},
+  {"year":2025,"school":"广东食品药品职业学院","category":"普通类","minScore":335,"avgScore":352,"region":"广州"},
+  {"year":2025,"school":"广东机电职业技术学院","category":"普通类","minScore":330,"avgScore":348,"region":"广州"},
+  {"year":2024,"school":"深圳职业技术大学","category":"普通类","minScore":398,"avgScore":415,"region":"深圳"},
+  {"year":2024,"school":"广东轻工职业技术大学","category":"普通类","minScore":385,"avgScore":402,"region":"广州"},
+  {"year":2024,"school":"广州番禺职业技术学院","category":"普通类","minScore":372,"avgScore":390,"region":"广州"},
+  {"year":2024,"school":"顺德职业技术学院","category":"普通类","minScore":360,"avgScore":378,"region":"佛山"},
+  {"year":2024,"school":"深圳信息职业技术学院","category":"普通类","minScore":388,"avgScore":405,"region":"深圳"},
+  {"year":2024,"school":"广东科学技术职业学院","category":"普通类","minScore":355,"avgScore":373,"region":"广州"},
+  {"year":2024,"school":"广东交通职业技术学院","category":"普通类","minScore":345,"avgScore":363,"region":"广州"},
+  {"year":2024,"school":"广东水利电力职业技术学院","category":"普通类","minScore":335,"avgScore":353,"region":"广州"},
+  {"year":2024,"school":"广东食品药品职业学院","category":"普通类","minScore":330,"avgScore":348,"region":"广州"},
+  {"year":2024,"school":"广东机电职业技术学院","category":"普通类","minScore":325,"avgScore":343,"region":"广州"}
+]
