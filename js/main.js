@@ -1,4 +1,4 @@
-﻿// ===== Navigation =====
+// ===== Navigation =====
 function renderNav() {
   const nav = document.getElementById("nav");
   if (!nav) return;
@@ -6,25 +6,25 @@ function renderNav() {
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
 
   const links = [
-    { href: "/", text: "首页" },
-    { href: "/policy.html", text: "政策解读" },
-    { href: "/registration.html", text: "报名流程" },
-    { href: "/subjects.html", text: "考试科目" },
-    { href: "/scores.html", text: "分数线" },
-    { href: "/schools.html", text: "院校招生" },
-    { href: "/resources.html", text: "备考资料" },
+    { href: "./", text: "首页" },
+    { href: "policy.html", text: "政策解读" },
+    { href: "registration.html", text: "报名流程" },
+    { href: "subjects.html", text: "考试科目" },
+    { href: "scores.html", text: "分数线" },
+    { href: "schools.html", text: "院校招生" },
+    { href: "resources.html", text: "备考资料" },
   ];
 
   let linksHtml = links
     .map((link) => {
-      const isActive = currentPath === link.href.replace("/", "") || (currentPath === "index.html" && link.href === "/");
+      const isActive = currentPath === link.href.replace("/", "") || (currentPath === "index.html" && link.href === "./");
       return `<a href="${link.href}" class="${isActive ? "active" : ""}">${link.text}</a>`;
     })
     .join("");
 
   nav.innerHTML = `
     <div class="nav-container">
-      <a href="/" class="nav-brand">广东省春季高考</a>
+      <a href="./" class="nav-brand">广东省春季高考</a>
       <div class="nav-links" id="navLinks">
         ${linksHtml}
         <button class="nav-search-btn" id="navSearchBtn" aria-label="搜索" title="搜索">
@@ -132,3 +132,5 @@ document.addEventListener("DOMContentLoaded", () => {
   observeAnimate();
   initBackToTop();
 });
+
+
